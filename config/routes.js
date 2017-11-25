@@ -41,8 +41,8 @@ module.exports.routes = {
   'GET /auth/validate_token' : 'AuthController.validate_token',
   'GET /auth/logout': 'AuthController.logout',
   'POST /register' : 'UserController.register',
-  'GET /quote/open' : 'QuoteController.getQuote',
-  'GET /quote/protected' : 'QuoteController.getProtectedQuote',
+  'POST /user' : 'UserController.register'
+
 
   /***************************************************************************
   *                                                                          *
