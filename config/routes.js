@@ -41,7 +41,8 @@ module.exports.routes = {
   'GET /auth/validate_token' : 'AuthController.validate_token',
   'GET /auth/logout': 'AuthController.logout',
   'POST /register' : 'UserController.register',
-  'POST /user' : 'UserController.register'
+  'POST /user' : 'UserController.register',
+  'PUT /user' : 'UserController.update'
 
 
   /***************************************************************************

@@ -16,6 +16,7 @@ module.exports = {
 
     manufacturer: {
       type: 'string',
+      enum: ['Flavour Art'],
       required: true
     },
 

@@ -8,6 +8,11 @@
  */
 module.exports = function(req, res, next) {
 
+  //If this is an admin, then they can edit anything
+  if (req.user.isAdmin) {
+    return next();
+  }
+
   var model_name = req.options.model;
   var Model = sails.models[model_name];
 
