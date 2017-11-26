@@ -24,7 +24,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js",
+    "start": "node app.js --prod",
     "local": "env-cmd .env node app.js"
   },
   "main": "app.js",
