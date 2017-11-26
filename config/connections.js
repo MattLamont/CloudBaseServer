@@ -19,6 +19,8 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html
  */
 
+ var toBool = require("to-bool");
+
 module.exports.connections = {
 
   /***************************************************************************
@@ -47,8 +49,7 @@ module.exports.connections = {
     password: process.env.PG_PASSWORD,
     database: process.env.PG_DATABASE,
     port: process.env.PG_PORT,
-    poolSize: 10,
-    ssl: true
+    ssl: toBool( process.env.PG_SSL )
   },
 
   /***************************************************************************
