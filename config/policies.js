@@ -38,7 +38,7 @@ module.exports.policies = {
       "hasToken",
       "isOwner"
     ],
-    delete: [
+    destroy: [
       "hasToken",
       "isOwner"
     ]
@@ -49,21 +49,31 @@ module.exports.policies = {
   },
 
   FlavorController: {
+
+    '*': [
+      "hasToken",
+      "isAdmin"
+    ],
+
     find: true,
+    findOne: true,
+  },
+
+  UploadController: {
+    '*': [
+      "hasToken",
+      "isAdmin"
+    ],
 
     create: [
-      "hasToken",
-      "isAdmin"
+      "hasToken"
     ],
-    update: [
+
+    destroy: [
       "hasToken",
-      "isAdmin"
-    ],
-    delete: [
-      "hasToken",
-      "isAdmin"
+      "isOwner"
     ]
-  }
+  },
 
   /***************************************************************************
    *                                                                          *

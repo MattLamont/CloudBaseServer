@@ -33,6 +33,21 @@ module.exports = {
     description: {
       type: 'string',
       defaultsTo: 'None'
-    }
+    },
+
+    likes:{
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    dislikes:{
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    category:{
+      type: 'string',
+      defaultsTo: ''
+    },
   }
 };

@@ -5,6 +5,7 @@
   "description": "CloudBase Server",
   "keywords": [],
   "dependencies": {
+    "aws-sdk": "^2.156.0",
     "bcrypt": "^1.0.1",
     "bcrypt-nodejs": "0.0.3",
     "express-jwt": "^5.1.0",
@@ -17,7 +18,9 @@
     "rc": "1.2.2",
     "sails": "~0.12.10",
     "sails-disk": "~0.10.9",
-    "sails-postgresql": "^0.11.4"
+    "sails-postgresql": "^0.11.4",
+    "skipper": "^0.8.4",
+    "skipper-s3": "^0.5.9"
   },
   "scripts": {
     "debug": "node debug app.js",
