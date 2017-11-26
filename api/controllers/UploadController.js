@@ -21,8 +21,6 @@ module.exports = {
       return res.badRequest('Incorrect or no image type given as query parameter.');
     }
 
-    console.log(req.file('image'));
-
     if (_.isUndefined(req.file('image'))) {
       return res.badRequest('No upload file found.');
     }
