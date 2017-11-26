@@ -25,7 +25,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js --prod",
+    "start": "sails lift",
     "local": "env-cmd .env node app.js"
   },
   "main": "app.js",
