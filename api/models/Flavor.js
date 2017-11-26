@@ -49,5 +49,11 @@ module.exports = {
       type: 'string',
       defaultsTo: ''
     },
+/*
+    recipes: {
+      collection: 'recipe',
+      via: 'flavors'
+    }
+    */
   }
 };

@@ -16,27 +16,43 @@ module.exports = {
       required: true,
       unique: true
     },
+
     email: {
       type: 'STRING',
       required: true,
       unique: true
     },
+
     password: {
       type: 'STRING',
       required: true
     },
+
     isAdmin: {
       type: 'BOOLEAN',
       defaultsTo: false
     },
+
     isDeleted: {
       type: 'BOOLEAN',
       defaultsTo: false
     },
+
     image_url: {
       type: 'url',
       defaultsTo: ''
     },
+
+    biography: {
+      type: 'string',
+      defaultsTo: ''
+    },
+
+    recipes: {
+      collection: 'recipe',
+      via: 'owner'
+    },
+
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
