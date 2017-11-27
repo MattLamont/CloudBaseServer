@@ -21,11 +21,9 @@ module.exports = {
     if (req.param('password').length < 6) {
       return res.badRequest('A password must be at least 6 character')
     }
-    /*
     if (req.param('isAdmin') == true) {
       return res.badRequest('Cannot be assigned admin role')
     }
-    */
     EmailAddresses.validate({
       string: email
     }).exec({
@@ -49,8 +47,7 @@ module.exports = {
             User.create({
               username: email,
               email: email,
-              password: password,
-              isAdmin: req.body.isAdmin
+              password: password
             }).exec(function(err, result) {
               if (err) {
                 return res.serverError(err);
