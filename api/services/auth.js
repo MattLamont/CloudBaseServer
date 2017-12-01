@@ -1,6 +1,6 @@
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
-//var User = 
+//var User =
 
 module.exports = {
     login: function (req, res) {
@@ -25,7 +25,7 @@ module.exports = {
                     req.session.cookie.token = token;
                     res.send({
                         success: true,
-                        user: {email:user[0].email, username:user[0].username },
+                        user: user[0],
                         token: token
                     });
                 }
