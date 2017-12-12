@@ -64,8 +64,9 @@ module.exports = {
 
   update: function(req, res) {
 
+    console.log( req.user );
     //if the user is attempting to change the admin status: they must be an admin themselves
-    if (!_.isUndefined(req.body.isAdmin)) {
+    if ( req.body.isAdmin ) {
       if( !req.user.isAdmin ){
         return res.forbidden('Admin priviledge is required to perform this action.');
       }
