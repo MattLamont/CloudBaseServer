@@ -45,7 +45,7 @@ module.exports = {
           } else {
 
             User.create({
-              username: email,
+              username: req.param('username'),
               email: email,
               password: password
             }).exec(function(err, result) {

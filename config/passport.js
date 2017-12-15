@@ -7,9 +7,12 @@ var LocalStrategy = require('passport-local').Strategy;
 //var JwtStrategy = require('passport-jwt').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.find({username:username}).exec(function(err, user) {
+passport.use(new LocalStrategy({
+      usernameField: 'email',
+      passwordField: 'password'
+    },
+    function(email, password, done) {
+        User.find({email:email}).exec(function(err, user) {
 
             if (err) {
                 return done(null, err);
