@@ -87,13 +87,18 @@ module.exports = {
     },
 
     likes: {
-      type: 'integer',
-      defaultsTo: '0'
+      collection: 'user',
+      via: 'liked_recipes'
     },
 
     dislikes: {
-      type: 'integer',
-      defaultsTo: '0'
+      collection: 'user',
+      via: 'disliked_recipes'
+    },
+
+    saves: {
+      collection: 'user',
+      via: 'saved_recipes'
     },
 
     views: {
@@ -110,8 +115,9 @@ module.exports = {
       return cb( "There must be a flavor percentage for every flavor in the recipe" );
     }
 
-    recipe.likes = 0;
-    recipe.dislikes = 0;
+    recipe.likes = [];
+    recipe.dislikes = [];
+    recipe.saves = [];
     recipe.views = 0;
     cb(null, recipe);
 

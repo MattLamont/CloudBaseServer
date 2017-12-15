@@ -53,6 +53,34 @@ module.exports = {
       via: 'owner'
     },
 
+    liked_recipes: {
+      collection: 'recipe',
+      via: 'likes',
+      dominant: true
+    },
+
+    disliked_recipes: {
+      collection: 'recipe',
+      via: 'dislikes',
+      dominant: true
+    },
+
+    saved_recipes: {
+      collection: 'recipe',
+      via: 'saves',
+      dominant: true
+    },
+
+    followers: {
+      collection: 'user',
+      via: 'following',
+    },
+
+    following: {
+      collection: 'user',
+      via: 'followers',
+    },
+
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
@@ -60,6 +88,9 @@ module.exports = {
     }
   },
   beforeCreate: function(user, cb) {
+    user.followers = [];
+    user.following = [];
+
     delete user.password_confirmation;
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(user.password, salt, function() {}, function(err, hash) {

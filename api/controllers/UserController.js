@@ -72,7 +72,8 @@ module.exports = {
       }
     }
 
-    User.update({id:req.param('id')},req.body).exec( function( err , user ){
+    User.update({id:req.param('id')},req.body)
+    .exec( function( err , user ){
 			if( err ){
 				return res.negotiate( err );
 			}
