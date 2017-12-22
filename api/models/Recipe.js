@@ -129,7 +129,6 @@ module.exports = {
       var isValid = true;
 
       _.each( value , ( item ) => {
-        console.log( item );
         if( item < 0 || item > 100 ){
           isValid = false;
         }

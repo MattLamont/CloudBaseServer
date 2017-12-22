@@ -64,7 +64,6 @@ module.exports = {
 
   update: function(req, res) {
 
-    console.log( req.user );
     //if the user is attempting to change the admin status: they must be an admin themselves
     if ( req.body.isAdmin ) {
       if( !req.user.isAdmin ){
