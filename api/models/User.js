@@ -88,8 +88,6 @@ module.exports = {
     }
   },
   beforeCreate: function(user, cb) {
-    user.followers = [];
-    user.following = [];
 
     delete user.password_confirmation;
     bcrypt.genSalt(10, function(err, salt) {

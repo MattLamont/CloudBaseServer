@@ -22,7 +22,8 @@ module.exports = {
     flavors: {
       collection: 'flavor',
       via: 'id',
-      required: true
+      required: true,
+      dominant: true
     },
 
     pg_percent: {
@@ -111,6 +112,9 @@ module.exports = {
 
   beforeCreate: function(recipe, cb) {
 
+    //console.log( '----------Before Create--------------');
+    //console.log( recipe );
+
     if( recipe.flavors.length != recipe.flavor_percents.length ){
       return cb( "There must be a flavor percentage for every flavor in the recipe" );
     }
@@ -121,6 +125,12 @@ module.exports = {
     recipe.views = 0;
     cb(null, recipe);
 
+  },
+
+  beforeValidate: function( recipe , cb ){
+    //console.log( "-----------Validation-----------")
+    //console.log( recipe );
+    cb( null , recipe );
   },
 
   types: {
