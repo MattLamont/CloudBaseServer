@@ -106,31 +106,59 @@ module.exports = {
       type: 'integer',
       defaultsTo: 0
     }
-
   },
 
 
   beforeCreate: function(recipe, cb) {
 
-    //console.log( '----------Before Create--------------');
-    //console.log( recipe );
+    if( recipe.flavors.length != recipe.flavor_percents.length ){
+      return cb( "There must be a flavor percentage for every flavor in the recipe" );
+    }
+
+    if( recipe.likes ){
+      delete recipe.likes;
+    }
+
+    if( recipe.dislikes ){
+      delete recipe.dislikes;
+    }
+
+    if( recipe.saves ){
+      delete recipe.saves;
+    }
+
+    if( recipe.views ){
+      delete recipe.views;
+    }
+
+    cb(null, recipe);
+
+  },
+
+  beforeUpdate: function(recipe, cb) {
 
     if( recipe.flavors.length != recipe.flavor_percents.length ){
       return cb( "There must be a flavor percentage for every flavor in the recipe" );
     }
 
-    recipe.likes = [];
-    recipe.dislikes = [];
-    recipe.saves = [];
-    recipe.views = 0;
+    if( recipe.likes ){
+      delete recipe.likes;
+    }
+
+    if( recipe.dislikes ){
+      delete recipe.dislikes;
+    }
+
+    if( recipe.saves ){
+      delete recipe.saves;
+    }
+
+    if( recipe.views ){
+      delete recipe.views;
+    }
+
     cb(null, recipe);
 
-  },
-
-  beforeValidate: function( recipe , cb ){
-    //console.log( "-----------Validation-----------")
-    //console.log( recipe );
-    cb( null , recipe );
   },
 
   types: {

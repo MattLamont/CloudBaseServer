@@ -41,6 +41,18 @@ module.exports.policies = {
     destroy: [
       "hasToken",
       "isOwner"
+    ],
+
+    addRecipeLike: [
+      "hasToken",
+    ],
+
+    addRecipeDislike: [
+      "hasToken",
+    ],
+
+    addRecipeSave: [
+      "hasToken",
     ]
   },
 

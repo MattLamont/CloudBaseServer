@@ -78,5 +78,75 @@ module.exports = {
 			}
 			return res.ok( user );
 		});
+  },
+
+
+  addRecipeLike: function(req, res) {
+
+    async( () => {
+      let user = await(User.findOne( {id: req.query.id} ));
+      console.log( user );
+    })();
+    /*
+    User.findOne( {id: req.query.id} )
+    .populate( 'liked_recipes' )
+    .exec( function( err , user ){
+
+      user.liked_recipes.add( req.query.id );
+      user.save( function(err){
+
+        if( err ) {return res.serverError(err);}
+
+        Recipe.findOne( {id:})
+
+      });
+
+
+    });
+
+    User.update({id:req.param('id')},req.body)
+    .exec( function( err , user ){
+			if( err ){
+				return res.negotiate( err );
+			}
+			return res.ok( user );
+		});
+    */
+  },
+
+  addRecipeDislike: function(req, res){
+
+    //if the user is attempting to change the admin status: they must be an admin themselves
+    if ( req.body.isAdmin ) {
+      if( !req.user.isAdmin ){
+        return res.forbidden('Admin priviledge is required to perform this action.');
+      }
+    }
+
+    User.update({id:req.param('id')},req.body)
+    .exec( function( err , user ){
+			if( err ){
+				return res.negotiate( err );
+			}
+			return res.ok( user );
+		});
+  },
+
+  addRecipeSave: function(req, res){
+
+    //if the user is attempting to change the admin status: they must be an admin themselves
+    if ( req.body.isAdmin ) {
+      if( !req.user.isAdmin ){
+        return res.forbidden('Admin priviledge is required to perform this action.');
+      }
+    }
+
+    User.update({id:req.param('id')},req.body)
+    .exec( function( err , user ){
+			if( err ){
+				return res.negotiate( err );
+			}
+			return res.ok( user );
+		});
   }
 };
