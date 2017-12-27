@@ -71,6 +71,12 @@ module.exports = {
       dominant: true
     },
 
+    reviewed_recipes: {
+      collection: 'review',
+      via: 'owner',
+      dominant: true
+    },
+
     followers: {
       collection: 'user',
       via: 'following',

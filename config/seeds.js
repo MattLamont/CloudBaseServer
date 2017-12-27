@@ -1,6 +1,7 @@
 var recipeSeed = require('../seeds/development/RecipeSeed.js');
 var userSeed = require('../seeds/development/UserSeed.js');
 var flavorSeed = require('../seeds/development/FlavorSeed.js');
+var reviewSeed = require('../seeds/development/ReviewSeed.js');
 
 var toBool = require("to-bool");
 
@@ -32,11 +33,18 @@ flavorSeed(function(err, data) {
   flavors = data;
 });
 
+let reviews = [];
+
+reviewSeed(function(err, data) {
+  reviews = data;
+});
+
 module.exports.seeds = {
 
   disable: toBool( process.env.SEEDING_DISABLED ),
   user: users,
   recipe: recipes,
   flavor: flavors,
+  review: reviews
 
 }

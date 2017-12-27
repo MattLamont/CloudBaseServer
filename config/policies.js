@@ -108,6 +108,26 @@ module.exports.policies = {
     ]
   },
 
+  ReviewController: {
+
+    '*': true,
+
+    create: [
+      "hasToken",
+      "beforeCreate"
+    ],
+
+    update: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    destroy: [
+      "hasToken",
+      "isOwner"
+    ]
+  },
+
   /***************************************************************************
    *                                                                          *
    * Here's an example of mapping some policies to run before a controller    *

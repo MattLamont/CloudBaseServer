@@ -102,6 +102,11 @@ module.exports = {
       via: 'saved_recipes'
     },
 
+    reviews: {
+      collection: 'review',
+      via: 'recipe'
+    },
+
     views: {
       type: 'integer',
       defaultsTo: 0
@@ -137,8 +142,10 @@ module.exports = {
 
   beforeUpdate: function(recipe, cb) {
 
-    if( recipe.flavors.length != recipe.flavor_percents.length ){
-      return cb( "There must be a flavor percentage for every flavor in the recipe" );
+    if( recipe.flavors && recipe.flavor_percents ){
+      if( recipe.flavors.length != recipe.flavor_percents.length ){
+        return cb( "There must be a flavor percentage for every flavor in the recipe" );
+      }
     }
 
     if( recipe.likes ){
