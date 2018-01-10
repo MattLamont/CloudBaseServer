@@ -11,6 +11,7 @@ var auth = require('../services/auth');
 module.exports = {
 
   attributes: {
+
     username: {
       type: 'STRING',
       required: true,
@@ -80,11 +81,21 @@ module.exports = {
     followers: {
       collection: 'user',
       via: 'following',
+      dominant: true
     },
 
     following: {
       collection: 'user',
-      via: 'followers',
+      via: 'followers'
+    },
+
+    settings: {
+      type: 'json',
+      defaultsTo: {
+        theme: 'light',
+        sidebar: 'push',
+        recipe_display: 'cards'
+      }
     },
 
     toJSON: function() {

@@ -34,38 +34,38 @@ buildUser = function() {
 
 
   let numLikes = (faker.random.number() % 50);
-  let liked_recipes = [];
+  let liked_recipes = new Set();
 
   for (let i = 0; i < numLikes; i++) {
-    liked_recipes.push((faker.random.number() % 50) + 1);
+    liked_recipes.add((faker.random.number() % 50) + 1);
   }
 
   let numDislikes = (faker.random.number() % 50);
-  let disliked_recipes = [];
+  let disliked_recipes = new Set();
 
   for (let i = 0; i < numDislikes; i++) {
-    disliked_recipes.push((faker.random.number() % 50) + 1);
+    disliked_recipes.add((faker.random.number() % 50) + 1);
   }
 
   let numSaved = (faker.random.number() % 50);
-  let saved_recipes = [];
+  let saved_recipes = new Set();
 
   for (let i = 0; i < numSaved; i++) {
-    saved_recipes.push((faker.random.number() % 50) + 1);
+    saved_recipes.add((faker.random.number() % 50) + 1);
   }
 
   let numFollowers = (faker.random.number() % 50);
-  let followers = [];
+  let followers = new Set();
 
   for (let i = 0; i < numFollowers; i++) {
-    followers.push((faker.random.number() % 50) + 1);
+    followers.add((faker.random.number() % 50) + 1);
   }
 
   let numFollowing = (faker.random.number() % 50);
-  let following = [];
+  let following = new Set();
 
   for (let i = 0; i < numFollowing; i++) {
-    following.push((faker.random.number() % 50) + 1);
+    following.add((faker.random.number() % 50) + 1);
   }
 
   return {
