@@ -5,20 +5,24 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var RecipeResponse = require('../services/RecipeResponse');
+var UserService = require('../services/UserService');
 
 module.exports = {
 
-  find: function(req, res) {
+  create: function( req , res ){
 
-		var override = RecipeResponse.createRecipeResOverride( req , res );
-    return sails.hooks.blueprints.middleware.find(req, override);
+    UserService.addRecipe( req.user.id , function( user ){
+      return sails.hooks.blueprints.middleware.create(req, res);
+    });
+
   },
 
-	findOne: function(req, res) {
 
-		var override = RecipeResponse.createRecipeResOverride( req , res );
-    return sails.hooks.blueprints.middleware.find(req, override);
+  destroy: function( req , res ){
+
+    UserService.removeRecipe( req.user.id , function( user ){
+      return sails.hooks.blueprints.middleware.destroy(req, res);
+    });
+
   }
-
 };

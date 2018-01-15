@@ -19,7 +19,7 @@ module.exports = {
 
    models: {
      connection: 'postgresql',
-     migrate: 'alter'
+     migrate: 'drop'
    },
 
 };

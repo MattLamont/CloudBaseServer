@@ -12,6 +12,15 @@ module.exports = function(done) {
         "isDeleted": false,
         "image_url": "",
         "biography": ""
+    },
+    {
+        "username": "CloudBase User",
+        "email": "user@cloudbase.com",
+        "password": "user1234",
+        "isAdmin": false,
+        "isDeleted": false,
+        "image_url": "",
+        "biography": ""
     }
   ];
 
@@ -54,12 +63,7 @@ buildUser = function() {
     saved_recipes.add((faker.random.number() % 50) + 1);
   }
 
-  let numFollowers = (faker.random.number() % 50);
-  let followers = new Set();
-
-  for (let i = 0; i < numFollowers; i++) {
-    followers.add((faker.random.number() % 50) + 1);
-  }
+  let followers_count = faker.random.number() % 50;
 
   let numFollowing = (faker.random.number() % 50);
   let following = new Set();
@@ -67,6 +71,8 @@ buildUser = function() {
   for (let i = 0; i < numFollowing; i++) {
     following.add((faker.random.number() % 50) + 1);
   }
+
+  let recipe_count = faker.random.number() % 50;
 
   return {
     "username": username,
@@ -76,11 +82,13 @@ buildUser = function() {
     "isDeleted": false,
     "image_url": image_url,
     "biography": biography,
-    "liked_recipes": liked_recipes,
-    "disliked_recipes": disliked_recipes,
-    "saved_recipes": saved_recipes,
-    "followers": followers,
-    "following": following
+    "liked_recipes": [...liked_recipes],
+    "disliked_recipes": [...disliked_recipes],
+    "saved_recipes": [...saved_recipes],
+    "following": [...following],
+    "followers_count": followers_count,
+    "following_count": following.size,
+    "recipe_count": recipe_count
   }
 
 }

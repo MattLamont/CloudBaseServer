@@ -54,6 +54,11 @@ module.exports = {
       via: 'owner'
     },
 
+    recipe_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
     liked_recipes: {
       collection: 'recipe',
       via: 'likes',
@@ -81,12 +86,21 @@ module.exports = {
     followers: {
       collection: 'user',
       via: 'following',
-      dominant: true
+    },
+
+    followers_count: {
+      type: 'integer',
+      defaultsTo: 0
     },
 
     following: {
       collection: 'user',
-      via: 'followers'
+      via: 'followers',
+    },
+
+    following_count: {
+      type: 'integer',
+      defaultsTo: 0
     },
 
     settings: {
@@ -104,7 +118,12 @@ module.exports = {
       return obj;
     }
   },
+
   beforeCreate: function(user, cb) {
+
+    //user.recipes_count = 0;
+    //user.followers_count = 0;
+    //user.following_count = 0;
 
     delete user.password_confirmation;
     bcrypt.genSalt(10, function(err, salt) {
@@ -113,5 +132,6 @@ module.exports = {
         cb(null, user);
       });
     });
-  }
+  },
+
 };

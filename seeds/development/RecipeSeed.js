@@ -45,6 +45,9 @@ buildRecipe = function() {
   let categoryNum = faker.random.number() % 7;
   let category = categories[categoryNum];
 
+  let likes_count = faker.random.number() % 50;
+  let saves_count = faker.random.number() % 50;
+
   return {
     "owner": owner,
     "name": name,
@@ -57,7 +60,9 @@ buildRecipe = function() {
     "description": description,
     "tags": [],
     "image_url": image_url,
-    "category": category
+    "category": category,
+    "likes_count": likes_count,
+    "saves_count": saves_count
   }
 
 }

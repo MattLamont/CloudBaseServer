@@ -92,14 +92,29 @@ module.exports = {
       via: 'liked_recipes'
     },
 
+    likes_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
     dislikes: {
       collection: 'user',
       via: 'disliked_recipes'
     },
 
+    dislikes_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
     saves: {
       collection: 'user',
       via: 'saved_recipes'
+    },
+
+    saves_count: {
+      type: 'integer',
+      defaultsTo: 0
     },
 
     reviews: {
@@ -120,6 +135,7 @@ module.exports = {
       return cb( "There must be a flavor percentage for every flavor in the recipe" );
     }
 
+    /*
     if( recipe.likes ){
       delete recipe.likes;
     }
@@ -135,7 +151,7 @@ module.exports = {
     if( recipe.views ){
       delete recipe.views;
     }
-
+    */
     cb(null, recipe);
 
   },

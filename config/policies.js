@@ -43,6 +43,16 @@ module.exports.policies = {
       "isOwner"
     ],
 
+    add: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    remove: [
+      "hasToken",
+      "isOwner"
+    ],
+
     addRecipeLike: [
       "hasToken",
     ],

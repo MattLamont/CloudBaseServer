@@ -16,14 +16,18 @@ module.exports = function(req, res, next) {
   var model_name = req.options.model;
   var Model = sails.models[model_name];
 
+  var resource_id = 0;
+  if( req.param('parentid') ) resource_id = req.param('parentid');
+  else resource_id = req.param('id');
+
   Model.find({
-    id: req.param('id')
+    id: resource_id
   })
   .exec(function(err, resource) {
 
-    if (err) {
-      return res.notFound(err);
-    }
+    if (err) return res.notFound(err);
+
+    if( !resource[0] ) return res.notFound();
 
     //If trying to access the User object: check to make sure the current user id matches the resource user id
     if( model_name == 'user' && (req.user.id == resource[0].id) ){
