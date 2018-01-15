@@ -131,8 +131,36 @@ module.exports = {
 
   beforeCreate: function(recipe, cb) {
 
-    if( recipe.flavors.length != recipe.flavor_percents.length ){
-      return cb( "There must be a flavor percentage for every flavor in the recipe" );
+    if (recipe.flavors.length != recipe.flavor_percents.length) {
+      return cb("There must be a flavor percentage for every flavor in the recipe");
+    }
+
+    if (!recipe.image_url) {
+      switch (recipe.category) {
+        case 'Tobacco':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/tobacco.jpg';
+          break;
+        case 'Dessert':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/dessert.jpg';
+          break;
+        case 'Fruit':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/fruit.jpg';
+          break;
+        case 'Candy':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/candy.jpg';
+          break;
+        case 'Food':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/food.jpg';
+          break;
+        case 'Beverage':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/beverage.jpg';
+          break;
+        case 'Other':
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/other.jpg';
+          break;
+        default:
+          recipe.image_url = 'https://s3-us-west-2.amazonaws.com/cloudbasedefaultimages/other.jpg';
+      }
     }
 
     /*
@@ -158,25 +186,25 @@ module.exports = {
 
   beforeUpdate: function(recipe, cb) {
 
-    if( recipe.flavors && recipe.flavor_percents ){
-      if( recipe.flavors.length != recipe.flavor_percents.length ){
-        return cb( "There must be a flavor percentage for every flavor in the recipe" );
+    if (recipe.flavors && recipe.flavor_percents) {
+      if (recipe.flavors.length != recipe.flavor_percents.length) {
+        return cb("There must be a flavor percentage for every flavor in the recipe");
       }
     }
 
-    if( recipe.likes ){
+    if (recipe.likes) {
       delete recipe.likes;
     }
 
-    if( recipe.dislikes ){
+    if (recipe.dislikes) {
       delete recipe.dislikes;
     }
 
-    if( recipe.saves ){
+    if (recipe.saves) {
       delete recipe.saves;
     }
 
-    if( recipe.views ){
+    if (recipe.views) {
       delete recipe.views;
     }
 
@@ -185,12 +213,12 @@ module.exports = {
   },
 
   types: {
-    isPercent: function(value){
+    isPercent: function(value) {
 
       var isValid = true;
 
-      _.each( value , ( item ) => {
-        if( item < 0 || item > 100 ){
+      _.each(value, (item) => {
+        if (item < 0 || item > 100) {
           isValid = false;
         }
       });
