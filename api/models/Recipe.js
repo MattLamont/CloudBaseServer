@@ -19,6 +19,11 @@ module.exports = {
       required: true
     },
 
+    isPrivate: {
+      type: 'boolean',
+      defaultsTo: true
+    },
+
     flavors: {
       collection: 'flavor',
       via: 'id',

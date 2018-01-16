@@ -51,6 +51,7 @@ buildRecipe = function() {
   return {
     "owner": owner,
     "name": name,
+    "isPrivate": false,
     "pg_percent": 50,
     "vg_percent": 50,
     "flavor_percents": flavor_percents,
