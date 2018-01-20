@@ -1,6 +1,6 @@
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
-//var User = 
+//var User =
 
 module.exports = {
     login: function (req, res) {
@@ -20,12 +20,13 @@ module.exports = {
                     });
                 } else {
                     //token expired in 1 day
-                    var token = jwt.sign(user[0], sails.config.secret, {expiresIn: 60 * 60 * 24});
+                    var token = jwt.sign(user[0], sails.config.secret, {expiresIn: 60 * 60 * 24 * 7});
                     // Set persistent cookie
                     req.session.cookie.token = token;
+
                     res.send({
                         success: true,
-                        user: {email:user[0].email, username:user[0].username },
+                        user: user[0],
                         token: token
                     });
                 }
@@ -36,9 +37,11 @@ module.exports = {
         if (req.headers.authorization) {
             jwt.verify(req.headers.authorization.replace('Bearer ', ''), sails.config.secret, function (err, decoded) {
                 //418 = I'm a teapot!
-                if (err) return res.status(401).send({success: false, message: 'invalid'});
+                if (err){
+                  sails.log( err );
+                  return res.status(401).send({success: false, message: 'invalid'});
+                }
                 if (decoded) {
-                    console.log(decoded[0]);
                     return res.send({success: true, user: decoded});
                 }
             });

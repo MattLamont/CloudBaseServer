@@ -19,6 +19,8 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html
  */
 
+ var toBool = require("to-bool");
+
 module.exports.connections = {
 
   /***************************************************************************
@@ -47,8 +49,7 @@ module.exports.connections = {
     password: process.env.PG_PASSWORD,
     database: process.env.PG_DATABASE,
     port: process.env.PG_PORT,
-    poolSize: 10,
-    ssl: false
+    ssl: toBool( process.env.PG_SSL )
   },
 
   /***************************************************************************
@@ -59,14 +60,14 @@ module.exports.connections = {
    * Run: npm install sails-mongo                                             *
    *                                                                          *
    ***************************************************************************/
-  // someMongodbServer: {
-  //   adapter: 'sails-mongo',
-  //   host: 'localhost',
-  //   port: 27017,
-  //   user: 'username', //optional
-  //   password: 'password', //optional
-  //   database: 'your_mongo_db_name_here' //optional
-  // },
+   mongodb: {
+     adapter: 'sails-mongo',
+     host: 'localhost',
+     port: 27017,
+     user: '', //optional
+     password: '', //optional
+     database: 'CloudBaseDB' //optional
+   },
 
   /***************************************************************************
    *                                                                          *

@@ -20,46 +20,142 @@
 module.exports.policies = {
 
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions (`true` allows public     *
-  * access)                                                                  *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Default policy for all controllers and actions (`true` allows public     *
+   * access)                                                                  *
+   *                                                                          *
+   ***************************************************************************/
 
   //'*': true,
 
-
-  //zuhra
-  '*': "hasToken",
   UserController: {
-      register: true
+
+    find: true,
+    create: true,
+    register: true,
+
+    update: [
+      "hasToken",
+      "isOwner"
+    ],
+    destroy: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    add: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    remove: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    addRecipeLike: [
+      "hasToken",
+    ],
+
+    addRecipeDislike: [
+      "hasToken",
+    ],
+
+    addRecipeSave: [
+      "hasToken",
+    ]
   },
+
   AuthController: {
-      '*': true
+    '*': true
   },
-  QuoteController: {
-      getQuote: true,
-      getProtectedQuote: "hasToken"
-  }
+
+  FlavorController: {
+
+    '*': [
+      "hasToken",
+      "isAdmin"
+    ],
+
+    find: true,
+    findOne: true,
+  },
+
+  UploadController: {
+    '*': [
+      "hasToken",
+      "isAdmin"
+    ],
+
+    create: [
+      "hasToken"
+    ],
+
+    destroy: [
+      "hasToken",
+      "isOwner"
+    ]
+  },
+
+  RecipeController: {
+
+    find: true,
+    findOne: true,
+
+    create: [
+      "hasToken",
+      "beforeCreate"
+    ],
+
+    update: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    destroy: [
+      "hasToken",
+      "isOwner"
+    ]
+  },
+
+  ReviewController: {
+
+    '*': true,
+
+    create: [
+      "hasToken",
+      "beforeCreate"
+    ],
+
+    update: [
+      "hasToken",
+      "isOwner"
+    ],
+
+    destroy: [
+      "hasToken",
+      "isOwner"
+    ]
+  },
 
   /***************************************************************************
-  *                                                                          *
-  * Here's an example of mapping some policies to run before a controller    *
-  * and its actions                                                          *
-  *                                                                          *
-  ***************************************************************************/
-	// RabbitController: {
+   *                                                                          *
+   * Here's an example of mapping some policies to run before a controller    *
+   * and its actions                                                          *
+   *                                                                          *
+   ***************************************************************************/
+  // RabbitController: {
 
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
+  // Apply the `false` policy as the default for all of RabbitController's actions
+  // (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
+  // '*': false,
 
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
+  // For the action `nurture`, apply the 'isRabbitMother' policy
+  // (this overrides `false` above)
+  // nurture	: 'isRabbitMother',
 
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
+  // Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
+  // before letting any users feed our rabbits
+  // feed : ['isNiceToAnimals', 'hasRabbitFood']
+  // }
 };

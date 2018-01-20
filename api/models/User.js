@@ -11,43 +11,127 @@ var auth = require('../services/auth');
 module.exports = {
 
   attributes: {
+
     username: {
-        type: 'STRING',
-        required: true,
-        unique: true
+      type: 'STRING',
+      required: true,
+      unique: true
     },
+
     email: {
-        type: 'STRING',
-        required: true,
-        unique: true
+      type: 'STRING',
+      required: true,
+      unique: true
     },
+
     password: {
-        type: 'STRING',
-        required: true
+      type: 'STRING',
+      required: true
     },
+
     isAdmin: {
-        type: 'BOOLEAN',
-        defaultsTo: false
+      type: 'BOOLEAN',
+      defaultsTo: false
     },
+
     isDeleted: {
-        type: 'BOOLEAN',
-        defaultsTo: false
+      type: 'BOOLEAN',
+      defaultsTo: false
     },
-    toJSON: function () {
-        var obj = this.toObject();
-        delete obj.password;
-        return obj;
+
+    image_url: {
+      type: 'url',
+      defaultsTo: ''
+    },
+
+    biography: {
+      type: 'string',
+      defaultsTo: ''
+    },
+
+    recipes: {
+      collection: 'recipe',
+      via: 'owner'
+    },
+
+    recipe_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    liked_recipes: {
+      collection: 'recipe',
+      via: 'likes',
+      dominant: true
+    },
+
+    disliked_recipes: {
+      collection: 'recipe',
+      via: 'dislikes',
+      dominant: true
+    },
+
+    saved_recipes: {
+      collection: 'recipe',
+      via: 'saves',
+      dominant: true
+    },
+
+    reviewed_recipes: {
+      collection: 'review',
+      via: 'owner',
+      dominant: true
+    },
+
+    followers: {
+      collection: 'user',
+      via: 'following',
+    },
+
+    followers_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    following: {
+      collection: 'user',
+      via: 'followers',
+    },
+
+    following_count: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    settings: {
+      type: 'json',
+      defaultsTo: {
+        theme: 'light',
+        sidebar: 'push',
+        recipe_display: 'cards'
+      }
+    },
+
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   },
-  beforeCreate: function (user, cb) {
-    delete user.password_confirmation;
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, function () {
-        }, function (err, hash) {
-            user.password = hash;
-            cb(null, user);
-        });
-    });
-  }
-};
 
+  beforeCreate: function(user, cb) {
+
+    //user.recipes_count = 0;
+    //user.followers_count = 0;
+    //user.following_count = 0;
+
+    delete user.password_confirmation;
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function() {}, function(err, hash) {
+        user.password = hash;
+        cb(null, user);
+      });
+    });
+  },
+
+};

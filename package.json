@@ -5,23 +5,31 @@
   "description": "CloudBase Server",
   "keywords": [],
   "dependencies": {
+    "aws-sdk": "^2.156.0",
     "bcrypt": "^1.0.1",
     "bcrypt-nodejs": "0.0.3",
     "express-jwt": "^5.1.0",
     "include-all": "^4.0.3",
     "jsonwebtoken": "7.2.1",
+    "knex": "^0.14.2",
     "machinepack-emailaddresses": "^0.4.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
+    "pg": "^7.4.0",
     "rc": "1.2.2",
     "sails": "~0.12.10",
     "sails-disk": "~0.10.9",
-    "sails-postgresql": "^0.11.4"
+    "sails-mongo": "^0.12.2",
+    "sails-postgresql": "^0.11.4",
+    "sails-seed": "^0.5.0",
+    "skipper": "^0.8.4",
+    "skipper-s3": "^0.5.9",
+    "to-bool": "0.0.1"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js",
+    "start": "node app.js --prod",
     "local": "env-cmd .env node app.js"
   },
   "main": "app.js",
@@ -30,5 +38,8 @@
     "url": ""
   },
   "author": "Matt",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "faker": "^4.1.0"
+  }
 }
