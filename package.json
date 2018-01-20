@@ -9,6 +9,7 @@
     "bcrypt": "^1.0.1",
     "bcrypt-nodejs": "0.0.3",
     "express-jwt": "^5.1.0",
+    "faker": "^4.1.0",
     "include-all": "^4.0.3",
     "jsonwebtoken": "7.2.1",
     "knex": "^0.14.2",
