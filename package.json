@@ -42,8 +42,6 @@
   "author": "Matt",
   "license": "",
   "devDependencies": {
-    "@angular/cli": "^1.6.5",
-    "enhanced-resolve": "^3.3.0",
     "faker": "^4.1.0"
   }
 }
