@@ -30,7 +30,7 @@
     "to-bool": "0.0.1"
   },
   "scripts": {
-    "debug": "node debug app.js",
+    "debug": "env-cmd .env node --inspect app.js",
     "start": "node app.js",
     "local": "env-cmd .env node app.js"
   },
